@@ -1,4 +1,4 @@
-import { median } from './median-kata';
+import { median } from './index';
 
 describe('Find Median of Number Array', () => {
   it('should return 3', () => {
