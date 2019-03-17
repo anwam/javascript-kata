@@ -1,4 +1,4 @@
-import findNeighbor from './index';
+import { findNeighbor } from './index';
 
 describe('Find neighborhood cell', () => {
   test('grid must be an ARRAY of tuples', () => {
@@ -39,5 +39,71 @@ describe('Find neighborhood cell', () => {
         targetColumn: 0,
       });
     }).toThrow(new Error("each grid's tuples must have them same length"));
+  });
+
+  it('should return the neighbors count equal to 2', () => {
+    const { neighborsCount } = findNeighbor({
+      grid: [[1], [1], [1]],
+      targetRow: 1,
+      targetColumn: 0,
+    });
+    expect(neighborsCount).toEqual(2);
+  });
+
+  it('should return the neighbors count equal to 8', () => {
+    const { neighborsCount } = findNeighbor({
+      grid: [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+      targetRow: 1,
+      targetColumn: 1,
+    });
+    expect(neighborsCount).toEqual(8);
+  });
+
+  it('should return the neighbors count equal to 3', () => {
+    const { neighborsCount } = findNeighbor({
+      grid: [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+      targetRow: 0,
+      targetColumn: 2,
+    });
+    expect(neighborsCount).toEqual(3);
+  });
+
+  it('should return the neighbors count equal to 3', () => {
+    const { neighborsCount } = findNeighbor({
+      grid: [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+      targetRow: 0,
+      targetColumn: 0,
+    });
+    expect(neighborsCount).toEqual(3);
+  });
+
+  it('should return the neighbors count equal to 3', () => {
+    const { neighborsCount } = findNeighbor({
+      grid: [
+        [1, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 1],
+        [1, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+      ],
+      targetRow: 1,
+      targetColumn: 2,
+    });
+    expect(neighborsCount).toEqual(3);
+  });
+
+  it('should return the neighbors count equal to 1', () => {
+    const { neighborsCount } = findNeighbor({
+      grid: [
+        [1, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 1],
+        [1, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+      ],
+      targetRow: 0,
+      targetColumn: 0,
+    });
+    expect(neighborsCount).toEqual(1);
   });
 });
