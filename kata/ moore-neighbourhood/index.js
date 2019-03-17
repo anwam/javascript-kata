@@ -15,10 +15,8 @@ export const findNeighbor = ({ grid, targetRow, targetColumn }) => {
 
   const neighborsCount = grid.reduce((totalRow, tuple, row) => {
     return (totalRow += tuple.reduce((totalColumn, number, column) => {
-      if (column === targetColumn && row === targetRow) {
-        return totalColumn;
-      }
       if (
+        (column === targetColumn && row === targetRow) ||
         Math.abs(targetColumn - column) > 1 ||
         Math.abs(row - targetRow) > 1
       ) {
